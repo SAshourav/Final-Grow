@@ -1,18 +1,13 @@
-import React from 'react';
-import Modal from './Modal';
+import React from 'react'
 
-const SingleProduct = ({product}) => {
-    const {img,product_name,quantity,unit,price,description,sold} = product;
-    const income = sold*price;
-    return (
-        <div className=" bg-white card card-compact w-96 bg-base-100 shadow-xl mr-2 mb-3">
-            <figure><img src={img} alt="Shoes" /></figure>
+function VegetablesDetails({allVegetablesCollection}) {
+    const {product_name,description
+    }=allVegetablesCollection;
+  return (
+    <div className=" bg-white card card-compact w-96 bg-base-100 shadow-xl mr-2">
+            <figure><img src="https://distan.sukabumikota.go.id/wp-content/uploads/2016/01/buah-tomat.jpg" alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{product_name}</h2>
-                <p>Stock: {quantity} {unit}</p>
-                <p>Per Unit Price: {price}</p>
-                <p>Item Sold: {sold}</p>
-                <p>Income Generated: {income}</p>
                 <p>{description}</p>
                 <div className="rating">
                     <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
@@ -22,11 +17,11 @@ const SingleProduct = ({product}) => {
                     <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
                 </div>
                 <div className="card-actions justify-end">
-                    <Modal></Modal>
+                <button className="btn btn-primary">Add To Cart</button>
                 </div>
             </div>
         </div>
-    );
-};
+  )
+}
 
-export default SingleProduct;
+export default VegetablesDetails

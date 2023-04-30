@@ -3,6 +3,9 @@ import './Home.css';
 import SingleCard from '../SingleCard/SingleCard';
 import Coursole from '../Coursole/Coursole';
 import { Link } from 'react-router-dom';
+import Vegetables from '../Categories/Vegetables/Vegetables';
+import Fish from '../Categories/Fish/Fish';
+import Meat from '../Categories/Meat/Meat';
 
 const Home = () => {
     return (
@@ -16,11 +19,13 @@ const Home = () => {
                         <SingleCard></SingleCard>
                     </div>
                     <h2 className='text-3xl mb-3'>Vegetable</h2>
-                    <SingleCard></SingleCard>
+                    <Vegetables/>
+
                     <h2 className='text-3xl mb-3'>Fish</h2>
-                    <SingleCard></SingleCard>
+                    <Fish/>
+
                     <h2 className='text-3xl mb-3'>Meat</h2>
-                    <SingleCard></SingleCard>
+                    <Meat></Meat>
                 </div>
             <div className='cart mt-4 rounded-lg mr-2 p-4'>
                 <h2 className='font-mono text-2xl mb-4'>Cart</h2>
