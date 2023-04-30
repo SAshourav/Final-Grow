@@ -1,0 +1,22 @@
+[
+    {
+        "farmer_id" : "01",
+        "product_id" : "01",
+        "product_category" : "Vegitable",
+        "product_name" : "Tomato",
+        "quantity" : "10",
+        "unit" : "kg",
+        "price" : "200",
+        "description" : "Pure Natural Food"
+    },
+    {
+        "farmer_id" : "01",
+        "product_id" : "03",
+        "product_category" : "Vegitable",
+        "product_name" : "Chilli",
+        "quantity" : "15",
+        "unit" : "kg",
+        "price" : "35",
+        "description" : "Pure Natural Food"
+    }
+]

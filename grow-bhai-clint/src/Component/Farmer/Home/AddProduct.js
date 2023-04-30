@@ -1,52 +1,90 @@
 import React from 'react';
 
 const AddProduct = () => {
-    const addProduct = () => {
-        
+    const addProduct = (event) => {
+        const unitValue = document.getElementById("unit")?.value;
+        const categryValue = document.getElementById("category")?.value;
+        event.preventDefault();
+        const form = event.target;
+        const product_name = form.productName.value;
+        console.log(product_name);
+        const product_category =`${categryValue}`;
+        const quantity = `${form.quantity.value}`;
+        const unit = `${unitValue}`;
+        const price = `${form.price.value}`;
+        const description = `${form.description.value}`;
+        const farmer_id = '';
+
+        const product = {
+            farmer_id,
+            product_name,
+            product_category,
+            quantity,
+            unit,
+            price,
+            description
+        }
+        fetch('http://localhost:5000/addProduct', {
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if(data.acknowledged){
+                    alert("Order Added");
+                    form.reset();
+                }
+            })
+            .catch(err => console.error(err))
     }
     return (
         <div>
             <div className='mb-18 w-3/4 mx-auto '>
-                <form className=' gap-4 grid grid-cols-3'>
+                <form onSubmit={addProduct} className=' gap-4 grid grid-cols-3'>
                     <div className='flex flex-col mx-auto'>
                         <label className='text-xl mb-2' htmlFor="">Product Name</label>
-                        <input  type="text" placeholder="Type here" className="mb-2 input input-bordered input-warning w-full max-w-xs" />
+                        <input name='productName'  type="text" placeholder="Type here" className="mb-2 input input-bordered input-warning w-full max-w-xs" />
                     </div>
                     <div className='flex flex-col mx-auto'>
                         <label className='text-xl mb-2' htmlFor="">Product Category</label>
-                        <select className="select select-warning w-full max-w-xs">
-                            <option disabled selected>Select Category</option>
-                            <option>Vegetable</option>
-                            <option>Fruits</option>
-                            <option>Meat</option>
-                            <option>Fish</option>
-                            <option>Cooking</option>
+                        <select id='category' className="select select-warning w-full max-w-xs" defaultValue="Select Category">
+                            <option value="Select Category" disabled>Select Category</option>
+                            <option value="vegitable">Vegetable</option>
+                            <option value="fruits">Fruits</option>
+                            <option value="meat">Meat</option>
+                            <option value="fish">Fish</option>
+                            <option value="cooking">Cooking</option>
                         </select>
+
                     </div>
                     <div className='flex flex-col mx-auto'>
                         <label className='text-xl mb-2' htmlFor="">Quantity</label>
-                        <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-xs" />
+                        <input name='quantity' type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-xs" />
                     </div>
                     <div className='flex flex-col mx-auto'>
                         <label className='text-xl mb-2' htmlFor="">Unit</label>
-                        <select className="select select-warning w-full max-w-xs">
-                            <option disabled selected>Select Unit</option>
-                            <option>KG</option>
-                            <option>Liter</option>
-                            <option>Piece</option>
-                            <option>Dorzon</option>
+                        <select id='unit' className="select select-warning w-full max-w-xs" defaultValue="Select Unit">
+                            <option value="Select Unit" disabled>Select Unit</option>
+                            <option value="kg">KG</option>
+                            <option value="liter">Liter</option>
+                            <option value="piece">Piece</option>
+                            <option value="dorzon">Dorzon</option>
                         </select>
                     </div>
                     <div className='flex flex-col mx-auto'>
                         <label className='text-xl mb-2' htmlFor="">Unit Price</label>
-                        <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-xs" />
+                        <input name='price' type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-xs" />
                     </div>
                     <div className='flex flex-col mx-auto'>
                         <label className='text-xl mb-2' htmlFor="">Description</label>
-                        <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-xs" />
+                        <input name='description' type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-xs" />
                     </div>
+                    <button type="submit" className="mt-5 btn btn-primary">Add Now</button>
                 </form>
-                <button onClick={addProduct} type="submit" class="mt-5 btn btn-primary">Add Now</button>
             </div>
         </div>
     );
