@@ -1,27 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AddProduct from './AddProduct';
 import SingleProduct from './SingleProduct';
 
-const products = [
-    {
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRyhPwFeDekvLZlMo1JEht6DPseTNRj7FYf_hcEXphKcaLZ0yBFE-KTt4CUop5799F7KA&usqp=CAU',
-        name: "Fish",
-        Quantity: 5,
-        Unit: "Kg",
-        Sold: 10,
-        UnitPrice: 200
-    },
-    {
-        img: 'https://cdn.britannica.com/68/143268-050-917048EA/Beef-loin.jpg',
-        name: "Beef",
-        Quantity: 5,
-        Unit: "Kg",
-        Sold: 10,
-        UnitPrice: 200
-    }
-]
+
+
 
 const HomeF = () => {
+    const [products, setProduct] = useState([]);
+    useEffect(()=>{
+        fetch('http://localhost:5000/addedproduct')
+            .then(res=> res.json())
+            .then(data => setProduct(data))
+    },[])
     return (
         <div>
             <h2 className='text-xl font-semibold font-mono'>Add Product To Your Store</h2>
@@ -38,6 +28,7 @@ const HomeF = () => {
             <div className='ml-5 mt-10 grid md:grid-cols-2 lg:grid-cols-3'>
                 {
                     products.map(product => <SingleProduct
+                    key={product._id}
                     product = {product}
                     ></SingleProduct>)
                 }

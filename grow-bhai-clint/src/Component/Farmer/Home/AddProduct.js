@@ -9,11 +9,12 @@ const AddProduct = () => {
         const product_name = form.productName.value;
         console.log(product_name);
         const product_category =`${categryValue}`;
-        const quantity = `${form.quantity.value}`;
-        const unit = `${unitValue}`;
-        const price = `${form.price.value}`;
+        const quantity = form.quantity.value;
+        const unit = unitValue;
+        const price = form.price.value;
         const description = `${form.description.value}`;
         const farmer_id = '';
+        const sold = 10
 
         const product = {
             farmer_id,
@@ -22,7 +23,8 @@ const AddProduct = () => {
             quantity,
             unit,
             price,
-            description
+            description,
+            sold
         }
         fetch('http://localhost:5000/addProduct', {
             method: 'POST',
