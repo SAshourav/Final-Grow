@@ -11,8 +11,7 @@ function Vegetables() {
     },[]);
     console.log(allVegetables);
   return (
-    <div>
-        <p>Product Category: vegetable category</p>
+    <div className='flex ml-2'>
         {
             allVegetables.map(pd=><VegetablesDetails key={pd._id} allVegetablesCollection={pd}/>)
         }

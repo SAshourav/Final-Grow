@@ -11,8 +11,7 @@ function Meat() {
     },[]);
     console.log(allMeats);
   return (
-    <div>
-        <p>Product Category: Meats</p>
+    <div className='flex ml-2'>
         {
             allMeats.map(pd=><MeatDetails key={pd._id} allMeatCollection={pd}/>)
         }

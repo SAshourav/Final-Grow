@@ -11,13 +11,12 @@ function Fish() {
     },[]);
     console.log(allFishes);
   return (
-    <div>
-        <p>Product Category: Fishes</p>
+    <div className='flex ml-2'>
         {
             allFishes.map(pd=><FishDetails key={pd._id} allFishesCollection={pd}/>)
         }
     </div>
-  )
+  ) 
 }
 
 export default Fish
