@@ -10,6 +10,8 @@ import Farmer from './Layout/Farmer';
 import HomeF from './Component/Farmer/Home/HomeF';
 import Order from './Component/Farmer/Order/Order';
 import Profile from './Component/Farmer/Profile/Profile';
+import { UserAuthContextProvider } from './Context/UserAuthContext';
+import ProtectedRoutes from './Context/ProtectedRoutes';
 
 function App() {
   const router = createBrowserRouter([
@@ -19,11 +21,11 @@ function App() {
       children: [
         {
           path: '/',
-          element: <Home></Home>
+          element: <Login></Login>
         },
         {
           path: '/home',
-          element: <Home></Home>
+          element: <ProtectedRoutes><Home></Home></ProtectedRoutes>
         },
         {
           path: '/account',
@@ -70,8 +72,9 @@ function App() {
   return (
     <div className="App">
       
-
-      <RouterProvider router={router}></RouterProvider>
+      <UserAuthContextProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </UserAuthContextProvider>
     </div>
   );
 }

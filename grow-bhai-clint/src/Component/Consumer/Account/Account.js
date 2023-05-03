@@ -1,4 +1,5 @@
 import React from 'react';
+import { useUserAuth } from '../../../Context/UserAuthContext';
 
 const Account = () => {
     const orders = [
@@ -16,7 +17,7 @@ const Account = () => {
         }
     ];
 
-    const user = {
+    const user2 = {
         image: "https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg",
         name: 'Jane Doe',
         email: 'janedoe@example.com',
@@ -24,9 +25,11 @@ const Account = () => {
         address: "123 Main St"
     };
 
+    const {user} = useUserAuth();
+
     return (
         <div className="bg-gray-100 pt-36 ">
-            <h2 className='text-3xl'>Hey, {user.name} !!</h2>
+            <h2 className='text-3xl'>Hey, {user.displayName} !!</h2>
             <div className="container mx-auto py-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white shadow rounded-lg p-6">
@@ -36,13 +39,13 @@ const Account = () => {
                         </div>
                         <div className="flex items-center mt-6">
                             <div className="relative w-20 h-20 overflow-hidden rounded-full">
-                                <img className="absolute h-full w-full object-cover" src={user.image} alt="Avatar" />
+                                <img className="absolute h-full w-full object-cover" src={user.photoURL} alt="Avatar" />
                             </div>
                             <div className="ml-6">
-                                <h3 className="text-lg font-semibold">{user.name}</h3>
+                                <h3 className="text-lg font-semibold">{user.displayName}</h3>
                                 <p className="text-gray-600">{user.email}</p>
-                                <p className="text-gray-600">{user.number}</p>
-                                <p className="text-gray-600">{user.address}</p>
+                                <p className="text-gray-600">{user.phoneNumber}</p>
+                                <p className="text-gray-600">{user2.address}</p>
                             </div>
                         </div>
                     </div>

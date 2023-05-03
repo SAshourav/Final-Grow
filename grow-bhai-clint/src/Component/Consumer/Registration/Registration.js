@@ -1,7 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from "../../../firebase";
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 const Registration = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [name , setName] = useState('');
+    const navigate = useNavigate();
+
+    const handleRegistration = (e) =>{
+        e.preventDefault();
+        setError('');
+        try{
+            createUserWithEmailAndPassword(auth, email,password)
+                .then((res)=>{
+                    const user = res.user;
+                    updateProfile(user,{
+                        displayName : name
+                    });
+                    alert("Account Created Successfully !");
+                    navigate('/login');
+                })
+            
+        }catch(err){
+            setError(err.message);
+            console.error(error)
+        }
+    }
+    
     return (
         <div>
             <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
@@ -13,7 +41,7 @@ const Registration = () => {
                     </a>
                 </div>
                 <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
-                    <form>
+                    <form onSubmit={handleRegistration}>
                         <div>
                             <label
                                 htmlFor="name"
@@ -23,6 +51,7 @@ const Registration = () => {
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
+                                    onChange={(e)=> setName(e.target.value)}
                                     type="text"
                                     name="name"
                                     className="block w-full mt-1 border-2  border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -38,6 +67,7 @@ const Registration = () => {
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
+                                    onChange={(e)=> setEmail(e.target.value)}
                                     type="email"
                                     name="email"
                                     className="block w-full mt-1 border-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -53,35 +83,15 @@ const Registration = () => {
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
+                                    onChange={(e)=> setPassword(e.target.value)}
                                     type="password"
                                     name="password"
                                     className="block w-full mt-1 border-2  border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                 />
                             </div>
                         </div>
-                        <div className="mt-4">
-                            <label
-                                htmlFor="password_confirmation"
-                                className="block text-sm font-medium text-gray-700 undefined"
-                            >
-                                Confirm Password
-                            </label>
-                            <div className="flex flex-col items-start">
-                                <input
-                                    type="password"
-                                    name="password_confirmation"
-                                    className="block w-full mt-1 border-2  border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                />
-                            </div>
-                        </div>
-                        <Link
-                            to="#"
-                            className="text-xs text-purple-600 hover:underline"
-                        >
-                            Forget Password?
-                        </Link>
                         <div className="flex items-center mt-4">
-                            <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+                            <button  className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
                                 Register
                             </button>
                         </div>

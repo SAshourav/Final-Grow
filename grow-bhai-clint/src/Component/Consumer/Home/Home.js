@@ -6,8 +6,11 @@ import Vegetables from '../Categories/Vegetables/Vegetables';
 import Fish from '../Categories/Fish/Fish';
 import Meat from '../Categories/Meat/Meat';
 import Cart from '../Cart/Cart';
+import { useUserAuth } from '../../../Context/UserAuthContext';
 
 const Home = () => {
+    const {user} = useUserAuth();
+    console.log(user);
     return (
         <div>
             <Coursole></Coursole>

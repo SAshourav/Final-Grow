@@ -1,7 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useUserAuth } from '../../../Context/UserAuthContext';
 
 const NavBar = () => {
+    const { logOut} = useUserAuth;
+    const handleSingout = async () =>{
+        try{
+            await logOut();
+        }catch(error){
+            console.log(error.message);
+        }
+    }
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -24,7 +33,7 @@ const NavBar = () => {
                         <span className="badge">New</span>
                     </Link>
                     </li>
-                    <li><Link to='/login'>Logout</Link></li>
+                    <li><Link onClick={handleSingout} to='/login'>Logout</Link></li>
                 </ul>
                 </div>
             </div>
