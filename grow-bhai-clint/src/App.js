@@ -12,6 +12,9 @@ import Order from './Component/Farmer/Order/Order';
 import Profile from './Component/Farmer/Profile/Profile';
 import { UserAuthContextProvider } from './Context/UserAuthContext';
 import ProtectedRoutes from './Context/ProtectedRoutes';
+import Fish from './Component/Consumer/Pages/Fish/Fish';
+import Meat from './Component/Consumer/Pages/Meat/Meat';
+import Vegetables from './Component/Consumer/Pages/Vegetables/Vegetables';
 
 function App() {
   const router = createBrowserRouter([
@@ -35,6 +38,22 @@ function App() {
           path: '/checkout',
           element: <Checkout></Checkout>
         },
+        {
+          path: '/fish',
+          element: <Fish></Fish>
+        },
+        {
+          path: '/meat',
+          element: <Meat></Meat>
+        },
+        {
+          path: '/vegitable',
+          element: <Vegetables></Vegetables>
+        },
+        {
+          path: '/cooking',
+          element: <Fish></Fish>
+        }
         
       ]
     },

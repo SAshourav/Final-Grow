@@ -24,10 +24,10 @@ const Home = () => {
                     <h2 className='text-3xl mt-3 mb-3'>Vegetable</h2>
                     <Vegetables/>
 
-                    <h2 className='text-3xl mt-3 mb-3'>Fish</h2>
+                    <h2  className='text-3xl mt-3 mb-3'>Fish</h2>
                     <Fish/>
 
-                    <h2 className='text-3xl mt-3 mb-3'>Meat</h2>
+                    <h2  className='text-3xl mt-3 mb-3'>Meat</h2>
                     <Meat></Meat>
                 </div>
 

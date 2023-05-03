@@ -12,7 +12,7 @@ const NavBar = () => {
         }
     }
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-green-200 sticky top-0 z-50">
             <div className="flex-1">
                 <Link to='/home' className="btn btn-ghost normal-case text-xl">Grow Bangla</Link>
             </div>
