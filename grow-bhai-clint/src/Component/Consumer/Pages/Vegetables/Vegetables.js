@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import VegetablesDetails from './VegetablesDetails';
-import { Link } from 'react-router-dom';
+import VegetablesDetails from '../../Categories/Vegetables/VegetablesDetails';
 
 function Vegetables() {
   const [allVegetables, setVegetables] = useState([]);

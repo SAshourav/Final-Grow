@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import FishDetails from './FishDetails';
+import FishDetails from '../../Categories/Fish/FishDetails';
 
 function Fish() {
     const [allFishes, setAllFishes] = useState([]);

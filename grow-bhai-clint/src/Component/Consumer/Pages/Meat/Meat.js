@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import MeatDetails from './MeatDetails';
+import MeatDetails from '../../Categories/Meat/MeatDetails';
 
 function Meat() {
     const[allMeats,setAllMeats]=useState([]);

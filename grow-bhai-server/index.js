@@ -26,6 +26,8 @@ const client = new MongoClient(uri, {
 async function run(){
     try{
         const productCollection = client.db('growBangla').collection('addingProduct');
+        const cartCollection = client.db('growBangla').collection('Carts');
+        const orderCollection = client.db('growBangla').collection('Orders');
 
         //add product api
         app.post('/addProduct', async(req, res)=>{
@@ -40,6 +42,30 @@ async function run(){
           const products = await cursor.toArray();
           res.send(products);
         })
+
+        //cart
+
+        app.post('/cart', async(req, res)=>{
+          const cartProduct = req.body;
+          const result = await cartCollection.insertOne(cartProduct);
+          res.send(result);
+        })
+
+        app.get('/cart', async(req, res)=>{
+          const query = {};
+          const cursor = cartCollection.find(query);
+          const cartProduct = await cursor.toArray();
+          res.send(cartProduct);
+        })
+
+        //orders
+
+        app.post('/order', async(req, res)=>{
+          const order = req.body;
+          const result = await orderCollection.insertOne(order);
+          res.send(result);
+        })
+
 
         
         
