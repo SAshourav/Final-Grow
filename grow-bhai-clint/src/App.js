@@ -24,7 +24,7 @@ function App() {
       children: [
         {
           path: '/',
-          element: <Login></Login>
+          element: <ProtectedRoutes><Home></Home></ProtectedRoutes>
         },
         {
           path: '/home',

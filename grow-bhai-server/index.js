@@ -58,6 +58,12 @@ async function run(){
           res.send(cartProduct);
         })
 
+        app.delete('/cart/:email', async (req, res) => {
+          const account = req.params.email;
+          const result = await cartCollection.deleteMany({ account });
+          res.send(result);
+        });
+
         //orders
 
         app.post('/order', async(req, res)=>{

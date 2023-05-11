@@ -45,8 +45,9 @@ const Checkout = () => {
             .then(data => {
                 console.log(data);
                 if(data.acknowledged){
+                    deleteCartProducts(email);
                     if(paymentMethod === 'online'){
-                        alert("online payment")
+                        window.location.href = `http://localhost/payment/payment.php?total=${total}`;
                     }else{
                         alert("Order Placed Successfully !")
                         navigate('/home');
@@ -55,6 +56,17 @@ const Checkout = () => {
                 }
             })
             .catch(err => console.error(err))
+    }
+
+    const deleteCartProducts = (email) => {
+        fetch(`http://localhost:5000/cart/${email}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => console.error(err));
     }
 
     return (
