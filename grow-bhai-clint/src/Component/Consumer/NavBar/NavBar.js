@@ -1,14 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../../Context/UserAuthContext';
 
 const NavBar = () => {
-    const { logOut} = useUserAuth;
-    const handleSingout = async () =>{
-        try{
+    const [search, setSearch] = useState('');
+    const { logOut } = useUserAuth();
+    const navigate = useNavigate();
+
+    const handleSingout = async () => {
+        try {
             await logOut();
-        }catch(error){
+        } catch (error) {
             console.log(error.message);
+        }
+    }
+
+
+    const handleSearchKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            navigate(`/search?query=${search}`);
         }
     }
     return (
@@ -18,7 +29,14 @@ const NavBar = () => {
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">
-                <input type="text" placeholder="Search" className="input input-bordered" />
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        className="input input-bordered"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        onKeyDown={handleSearchKeyPress}
+                    />
                 </div>
                 <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

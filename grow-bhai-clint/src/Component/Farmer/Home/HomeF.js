@@ -15,14 +15,8 @@ const HomeF = () => {
     return (
         <div>
             <h2 className='text-xl font-semibold font-mono'>Add Product To Your Store</h2>
-            <div className='ml-32 mt-10 mb-10 flex'>
-                <div className='mb-10'>
-                    <img className='border-2 p-28' src="" alt="Upload" />
-                    <input type="file" className="absolute left-28 mt-2 file-input file-input-bordered file-input-accent file-input-sm " />
-                </div>
-                <div>
+            <div className='ml-32 mt-10 mb-10'>
                     <AddProduct></AddProduct>
-                </div>
             </div>
             <h2 className='text-xl font-semibold font-mono'>Product Available In Your Store</h2>
             <div className='ml-5 mt-10 grid md:grid-cols-2 lg:grid-cols-3'>

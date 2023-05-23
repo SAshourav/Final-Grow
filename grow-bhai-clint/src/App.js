@@ -15,6 +15,7 @@ import ProtectedRoutes from './Context/ProtectedRoutes';
 import Fish from './Component/Consumer/Pages/Fish/Fish';
 import Meat from './Component/Consumer/Pages/Meat/Meat';
 import Vegetables from './Component/Consumer/Pages/Vegetables/Vegetables';
+import Search from './Component/Consumer/Pages/Search/Search';
 
 function App() {
   const router = createBrowserRouter([
@@ -53,6 +54,10 @@ function App() {
         {
           path: '/cooking',
           element: <Fish></Fish>
+        },
+        {
+          path: 'search',
+          element: <Search></Search>
         }
         
       ]
