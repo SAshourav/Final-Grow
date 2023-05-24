@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddProduct = () => {
+const AddProduct = ({loggedInUser}) => {
     const addProduct = (event) => {
         const unitValue = document.getElementById("unit")?.value;
         const categryValue = document.getElementById("category")?.value;
@@ -13,7 +13,7 @@ const AddProduct = () => {
         const unit = unitValue;
         const price = form.price.value;
         const description = `${form.description.value}`;
-        const farmer_id = '';
+        const farmer_id = loggedInUser;
         const sold = 10
 
         const product = {

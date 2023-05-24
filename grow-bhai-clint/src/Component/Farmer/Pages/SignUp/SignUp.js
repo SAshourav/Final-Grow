@@ -9,7 +9,7 @@ const SignUp = () => {
     const navigate = useNavigate();
 
 
-    const [user, setUser] = useState([]);
+        const [user, setUser] = useState([]);
         useEffect(()=>{
             fetch('http://localhost:5000/farmers')
                 .then(res=> res.json())
@@ -47,7 +47,7 @@ const SignUp = () => {
                     console.log(data);
                     if(data.acknowledged){
                         alert("Account Created !!");
-                        navigate('/loginF')
+                        navigate('/loginF');
                     }
                 })
                 .catch(err => console.error(err))

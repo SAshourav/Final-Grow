@@ -28,7 +28,7 @@ const NavBar = () => {
                         <span className="badge">New</span>
                     </Link>
                     </li>
-                    <li><Link to='/login'>Logout</Link></li>
+                    <li><Link to='/loginF'>Logout</Link></li>
                 </ul>
                 </div>
             </div>
