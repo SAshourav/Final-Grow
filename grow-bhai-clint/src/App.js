@@ -16,6 +16,8 @@ import Fish from './Component/Consumer/Pages/Fish/Fish';
 import Meat from './Component/Consumer/Pages/Meat/Meat';
 import Vegetables from './Component/Consumer/Pages/Vegetables/Vegetables';
 import Search from './Component/Consumer/Pages/Search/Search';
+import SignUp from './Component/Farmer/Pages/SignUp/SignUp';
+import LoginF from './Component/Farmer/Pages/Login/LoginF';
 
 function App() {
   const router = createBrowserRouter([
@@ -91,6 +93,14 @@ function App() {
     {
       path: '/registration',
       element: <Registration></Registration>
+    },
+    {
+      path: '/signup',
+      element: <SignUp></SignUp>
+    },
+    {
+      path:'/loginF',
+      element: <LoginF></LoginF>
     }
   ])
   return (

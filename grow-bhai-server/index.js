@@ -26,6 +26,7 @@ const client = new MongoClient(uri, {
 async function run(){
     try{
         const productCollection = client.db('growBangla').collection('addingProduct');
+        const farmers = client.db('growBangla').collection('Farmers');
         const cartCollection = client.db('growBangla').collection('Carts');
         const orderCollection = client.db('growBangla').collection('Orders');
 
@@ -42,6 +43,23 @@ async function run(){
           const products = await cursor.toArray();
           res.send(products);
         })
+
+        //farmer Account Open
+
+        app.post('/farmers', async(req, res)=>{
+          const addFarmer = req.body;
+          const result = await farmers.insertOne(addFarmer);
+          res.send(result);
+        })
+
+        ////farmer Account Open
+        app.get('/farmers', async (req, res) => {
+          const query = {};
+          const cursor = farmers.find(query);
+          const emails = await cursor.toArray();
+          res.send(emails);
+        });
+        
 
         //cart
 
