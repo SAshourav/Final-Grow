@@ -13,6 +13,7 @@ const Cart = () => {
         .then((data) => setCart(data.filter((pd) => pd.account === user.email)));
     }, []);
   
+    const farmer_id = cart[0].farmer_id;
     const getTotalPrice = () => {
       let totalPrice = 0;
       cart.forEach((item) => {
@@ -35,10 +36,10 @@ const Cart = () => {
           <div className="mt-6">
             <p className="text-xl mb-4 font-semibold">Total price: {getTotalPrice()}</p>
             <Link
-                to={`/checkout?total=${getTotalPrice()}`}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
-                >
-                Checkout
+                  to={`/checkout?total=${getTotalPrice()}&farmer_id=${farmer_id}`}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
+                    >
+                  Checkout
             </Link>
           </div>
         )}

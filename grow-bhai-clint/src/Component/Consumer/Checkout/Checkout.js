@@ -6,6 +6,7 @@ const Checkout = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const total = queryParams.get('total');
+    const farmer_id = queryParams.get('farmer_id');
 
     const {user} = useUserAuth();
 
@@ -25,6 +26,7 @@ const Checkout = () => {
         const email = user.email;
         const address = form.address.value;
         const amount = total;
+        var status = "pending"
 
         const order = {
             name,
@@ -32,7 +34,9 @@ const Checkout = () => {
             email,
             address,
             paymentMethod,
-            amount
+            amount,
+            farmer_id,
+            status
         }
         fetch('http://localhost:5000/order', {
             method: 'POST',

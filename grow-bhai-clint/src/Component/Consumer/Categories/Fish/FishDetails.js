@@ -1,41 +1,83 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useUserAuth } from '../../../../Context/UserAuthContext';
 
 function FishDetails({ allFishesCollection }) {
-  const { product_name, description, _id, price } = allFishesCollection;
+  const { product_name, description, _id, price, farmer_id } = allFishesCollection;
 
   const [quantity, setQuantity] = useState(1);
 
   const {user} = useUserAuth();
+
+  const [cart, setCart] = useState([]);
+  
+    useEffect(() => {
+      fetch("http://localhost:5000/cart")
+        .then((res) => res.json())
+        .then((data) => setCart(data.filter((pd) => pd.account === user.email)));
+    }, []);
+
 
   const handleQuantityChange = (event) => {
     setQuantity(parseInt(event.target.value));
   };
 
   const addToCart = () =>{
-    let productToAdd = {
-      name: product_name,
-      product_id: _id,
-      account: user.email,
-      quantity: quantity,
-      price: parseFloat(price)
-    }
-
-    fetch('http://localhost:5000/cart', {
-            method: 'POST',
-            headers: {
-                'content-type' : 'application/json'
-            },
-            body: JSON.stringify(productToAdd)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(user);
-                if(data.acknowledged){
-                    alert("Added To cart");
-                }
+    if(cart){
+      if(cart[0].farmer_id !== farmer_id){
+        alert("Must be from the same Provider/ farmer");
+      }else{
+        let productToAdd = {
+          name: product_name,
+          product_id: _id,
+          account: user.email,
+          quantity: quantity,
+          price: parseFloat(price),
+          farmer_id 
+        }
+    
+        fetch('http://localhost:5000/cart', {
+                method: 'POST',
+                headers: {
+                    'content-type' : 'application/json'
+                },
+                body: JSON.stringify(productToAdd)
             })
-            .catch(err => console.error(err))
+                .then(res => res.json())
+                .then(data => {
+                    console.log(user);
+                    if(data.acknowledged){
+                        alert("Added To cart");
+                    }
+                })
+                .catch(err => console.error(err))
+      }
+    }else{
+      let productToAdd = {
+        name: product_name,
+        product_id: _id,
+        account: user.email,
+        quantity: quantity,
+        price: parseFloat(price),
+        farmer_id 
+      }
+  
+      fetch('http://localhost:5000/cart', {
+              method: 'POST',
+              headers: {
+                  'content-type' : 'application/json'
+              },
+              body: JSON.stringify(productToAdd)
+          })
+              .then(res => res.json())
+              .then(data => {
+                  console.log(user);
+                  if(data.acknowledged){
+                      alert("Added To cart");
+                  }
+              })
+              .catch(err => console.error(err))
+    }
+    
   }
 
   return (
