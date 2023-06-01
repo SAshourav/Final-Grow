@@ -96,6 +96,27 @@ async function run(){
           res.send(orders);
         })
 
+        app.put('/order/:id', async (req, res) => {
+          const { id } = req.params;
+          const { status } = req.body;
+          
+          try {
+            const result = await orderCollection.updateOne(
+              { _id: ObjectId(id) },
+              { $set: { status } }
+            );
+        
+            if (result.modifiedCount === 1) {
+              res.sendStatus(200);
+            } else {
+              res.sendStatus(400);
+            }
+          } catch (error) {
+            console.log(error);
+            res.sendStatus(500);
+          }
+        });
+
 
         
         

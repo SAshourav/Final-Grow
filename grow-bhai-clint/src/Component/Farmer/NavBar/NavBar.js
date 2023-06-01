@@ -12,6 +12,9 @@ const NavBar = () => {
                 <div className='mr-5'>
                     <Link className='btn btn-ghost text-lg' to='/farmer/order'>Order</Link>
                 </div>
+                <div className='mr-5'>
+                    <Link className='btn btn-ghost text-lg' to='/home'>Consumer</Link>
+                </div>
                 <div className="form-control">
                 <input type="text" placeholder="Search" className="input input-bordered" />
                 </div>
@@ -28,7 +31,7 @@ const NavBar = () => {
                         <span className="badge">New</span>
                     </Link>
                     </li>
-                    <li><Link to='/loginF'>Logout</Link></li>
+                    <li><Link to='/login'>Logout</Link></li>
                 </ul>
                 </div>
             </div>

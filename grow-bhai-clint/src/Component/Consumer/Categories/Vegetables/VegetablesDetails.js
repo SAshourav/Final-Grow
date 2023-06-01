@@ -21,7 +21,7 @@ function VegetablesDetails({ allVegetablesCollection }) {
   
 
   const addToCart = () =>{
-    if(cart){
+    if(cart.length !== 0){
       if(cart[0].farmer_id !== farmer_id){
         alert("Must be from the same Provider/ farmer");
       }else{
@@ -91,6 +91,7 @@ function VegetablesDetails({ allVegetablesCollection }) {
         <h2 className="card-title">{product_name}</h2>
         <div className="text-lg font-bold mb-2">Tk. {price}</div>
         <p>{description}</p>
+        <h2>Farmer: {farmer_id}</h2>
         <div className="rating">
           <input
             type="radio"

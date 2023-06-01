@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useUserAuth } from '../../../Context/UserAuthContext';
+import OrderSingle from './OrderSingle';
 
 const Order = () => {
     const { user } = useUserAuth();
@@ -7,11 +8,15 @@ const Order = () => {
     useEffect(() => {
         fetch("http://localhost:5000/order")
           .then((res) => res.json())
-          .then((data) => setOrders(data.filter((pd) => pd.email === user.email)));
+          .then((data) => setOrders(data.filter((pd) => pd.farmer_id === user.email)));
       }, []);
     return (
         <div>
-            <h2>This is the order page</h2>
+                {
+                    orders.map((pd) => (
+                        <OrderSingle key={pd._id} pd={pd}></OrderSingle>
+                      ))
+                }
         </div>
     );
 };

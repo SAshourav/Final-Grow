@@ -8,7 +8,7 @@ function Vegetables() {
   useEffect(() => {
     fetch("http://localhost:5000/addedProduct")
       .then(res => res.json())
-      .then(data => setVegetables(data.filter(pd => pd.product_category === "Vegitable")))
+      .then(data => setVegetables(data.filter(pd => pd.product_category === "vegitable")))
   }, []);
 
   const limitedVegitable = allVegetables.slice(0, 6);

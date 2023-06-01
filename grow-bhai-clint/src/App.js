@@ -66,23 +66,23 @@ function App() {
     },
     {
       path: '/farmer',
-      element: <Farmer></Farmer>,
+      element: <ProtectedRoutes><Farmer></Farmer></ProtectedRoutes>,
       children: [
         {
           path: '/farmer',
-          element: <HomeF></HomeF>
+          element: <ProtectedRoutes><HomeF></HomeF></ProtectedRoutes>
         },
         {
           path: '/farmer/homeF',
-          element: <HomeF></HomeF>
+          element: <ProtectedRoutes><HomeF></HomeF></ProtectedRoutes>
         },
         {
           path: '/farmer/order',
-          element: <Order></Order>
+          element: <ProtectedRoutes><Order></Order></ProtectedRoutes>
         },
         {
           path: '/farmer/profile',
-          element: <Profile></Profile>
+          element: <ProtectedRoutes><Profile></Profile></ProtectedRoutes>
         }
       ]
     },
