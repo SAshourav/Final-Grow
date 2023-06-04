@@ -12,7 +12,7 @@ const Cart = () => {
         fetch("http://localhost:5000/cart")
             .then((res) => res.json())
             .then((data) => setCart(data.filter((pd) => pd.account === user.email)));
-    }, []);
+    }, [user.email]);
 
     useEffect(() => {
         if (cart.length > 0) {
@@ -27,6 +27,7 @@ const Cart = () => {
         });
         return totalPrice;
     };
+
 
     return (
         <div className="cart mt-4 rounded-lg mr-2 p-4">

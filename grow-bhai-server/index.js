@@ -28,7 +28,7 @@ async function run(){
         const farmers = client.db('growBangla').collection('Farmers');
         const cartCollection = client.db('growBangla').collection('Carts');
         const orderCollection = client.db('growBangla').collection('Orders');
-
+        
         //add product api
         app.post('/addProduct', async(req, res)=>{
           const addproduct = req.body;
@@ -79,7 +79,7 @@ async function run(){
           const account = req.params.email;
           const result = await cartCollection.deleteMany({ account });
           res.send(result);
-        });
+        })
 
         //orders
 
@@ -96,13 +96,14 @@ async function run(){
           res.send(orders);
         })
 
+        const {ObjectId} = require('mongodb');
         app.put('/order/:id', async (req, res) => {
           const { id } = req.params;
           const { status } = req.body;
           
           try {
             const result = await orderCollection.updateOne(
-              { _id: ObjectId(id) },
+              { _id: new ObjectId(id) },
               { $set: { status } }
             );
         

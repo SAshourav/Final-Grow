@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import ProductDetails from './ProductDetails';
 
 const OrderSingle = ({ pd }) => {
-    const { _id, amount } = pd;
-    const [status, setStatus] = useState();
+    const { _id, amount, DetailedProduct, paymentMethod} = pd;
+    const [status, setStatus] = useState(pd.status);
 
     const handleUpdateStatus = async () => {
         try {
@@ -29,6 +30,15 @@ const OrderSingle = ({ pd }) => {
             <div className="card-body">
                 <h2 className="card-title">Order Id: {_id}</h2>
                 <p>Total Amount: {amount}</p>
+                <div className='border-2 rounded'>
+                    <h2>Product Details</h2>
+                    {DetailedProduct && DetailedProduct.length > 0 ? (
+                        <ProductDetails detailedProduct={DetailedProduct} />
+                    ) : (
+                        <p>No detailed product available.</p>
+                    )}
+                </div>
+                <p>Payment Method : {paymentMethod}</p>
                 <div className="card-actions justify-end">
                     <select
                         value={status}
@@ -49,3 +59,5 @@ const OrderSingle = ({ pd }) => {
 };
 
 export default OrderSingle;
+
+

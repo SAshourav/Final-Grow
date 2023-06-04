@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../../Context/UserAuthContext';
 
@@ -7,6 +7,7 @@ const Checkout = () => {
     const queryParams = new URLSearchParams(location.search);
     const total = queryParams.get('total');
     const farmer_id = queryParams.get('farmer_id');
+    const [cart, setCart] = useState([])
 
     const {user} = useUserAuth();
 
@@ -18,6 +19,12 @@ const Checkout = () => {
         setPaymentMethod(event.target.value);
     }
 
+    useEffect(() => {
+        fetch("http://localhost:5000/cart")
+            .then((res) => res.json())
+            .then((data) => setCart(data.filter((pd) => pd.account === user.email)));
+    }, [user.email]);
+
     const handleOrder = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -26,8 +33,14 @@ const Checkout = () => {
         const email = user.email;
         const address = form.address.value;
         const amount = total;
-        var status = "pending"
-
+        const status = "pending";
+    
+        const detailedProduct = cart.map((product) => ({
+            name: product.name,
+            quantity: product.quantity,
+            price: product.price
+        }));
+    
         const order = {
             name,
             number,
@@ -36,31 +49,34 @@ const Checkout = () => {
             paymentMethod,
             amount,
             farmer_id,
-            status
-        }
+            status,
+            DetailedProduct: detailedProduct
+        };
+    
         fetch('http://localhost:5000/order', {
             method: 'POST',
             headers: {
-                'content-type' : 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(order)
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if(data.acknowledged){
-                    deleteCartProducts(email);
-                    if(paymentMethod === 'online'){
-                        window.location.href = `http://localhost/payment/payment.php?total=${total}`;
-                    }else{
-                        alert("Order Placed Successfully !")
-                        navigate('/home');
-                        form.reset();
-                    }  
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            if (data.acknowledged) {
+                deleteCartProducts(email);
+                if (paymentMethod === 'online') {
+                    window.location.href = `http://localhost/payment/payment.php?total=${total}`;
+                } else {
+                    alert("Order Placed Successfully!");
+                    navigate('/home');
+                    form.reset();
                 }
-            })
-            .catch(err => console.error(err))
-    }
+            }
+        })
+        .catch((err) => console.error(err));
+    };
+    
 
     const deleteCartProducts = (email) => {
         fetch(`http://localhost:5000/cart/${email}`, {

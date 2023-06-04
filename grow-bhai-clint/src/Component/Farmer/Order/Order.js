@@ -11,7 +11,7 @@ const Order = () => {
           .then((data) => setOrders(data.filter((pd) => pd.farmer_id === user.email)));
       }, []);
     return (
-        <div>
+        <div className='grid lg: grid-cols-4 '>
                 {
                     orders.map((pd) => (
                         <OrderSingle key={pd._id} pd={pd}></OrderSingle>
