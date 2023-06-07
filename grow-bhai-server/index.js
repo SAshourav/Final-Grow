@@ -118,6 +118,30 @@ async function run(){
           }
         });
 
+        //clint side uopdte
+
+        app.put('/Corder/:id', async (req, res) => {
+          const { id } = req.params;
+          const { orderStatus } = req.body;
+          const status = orderStatus;
+          
+          try {
+            const result = await orderCollection.updateOne(
+              { _id: new ObjectId(id) },
+              { $set: { status } }
+            );
+        
+            if (result.modifiedCount === 1) {
+              res.sendStatus(200);
+            } else {
+              res.sendStatus(400);
+            }
+          } catch (error) {
+            console.log(error);
+            res.sendStatus(500);
+          }
+        });
+
 
         
         

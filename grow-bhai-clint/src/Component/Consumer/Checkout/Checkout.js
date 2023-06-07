@@ -36,6 +36,7 @@ const Checkout = () => {
         const status = "pending";
     
         const detailedProduct = cart.map((product) => ({
+            pID: product.product_id,            
             name: product.name,
             quantity: product.quantity,
             price: product.price

@@ -39,20 +39,26 @@ const OrderSingle = ({ pd }) => {
                     )}
                 </div>
                 <p>Payment Method : {paymentMethod}</p>
+                <p>Order Status: {status}</p>
+                {status !== 'received' ? (
                 <div className="card-actions justify-end">
                     <select
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value)}
-                        className="select select-bordered"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                    className="select select-bordered"
                     >
-                        <option value="pending">Pending</option>
-                        <option value="processing">Processing</option>
-                        <option value="send">Send</option>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="sent">Send</option>
                     </select>
                     <button className="btn btn-primary" onClick={handleUpdateStatus}>
-                        Update
+                    Update
                     </button>
                 </div>
+                ) : null}
+
+
+                
             </div>
         </div>
     );
