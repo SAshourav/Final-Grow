@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const AddProduct = ({user}) => {
+    const [image, setImage] = useState("")
+    function converToBase64(e){
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = () => {
+            console.log(reader.result);
+            setImage(reader.result);
+        };
+        reader.onerror = (error) => {
+            console.log("Error: ", error)
+        };
+    }
     const addProduct = (event) => {
         const unitValue = document.getElementById("unit")?.value;
         const categryValue = document.getElementById("category")?.value;
@@ -24,7 +36,8 @@ const AddProduct = ({user}) => {
             unit,
             price,
             description,
-            sold
+            sold,
+            image
         }
         fetch('http://localhost:5000/addProduct', {
             method: 'POST',
@@ -48,8 +61,8 @@ const AddProduct = ({user}) => {
             <div className='mb-18 w-3/4 mx-auto '>
                 <form onSubmit={addProduct} className='flex'>
                     <div className='mb-10'>
-                        <img className='border-2 p-28 mr-10' src="" alt="Upload" />
-                        <input type="file" className="mr- mt-2 file-input file-input-bordered file-input-accent file-input-sm " />
+                        <img width={600} height={600} className='border-2 ' src={image} alt="Upload" />
+                        <input type="file" accept='image/*' onChange={converToBase64} className="mr- mt-2 file-input file-input-bordered file-input-accent file-input-sm " />
                     </div>
                     <div className='gap-4 grid grid-cols-3'>
                         <div className='flex flex-col mx-auto'>

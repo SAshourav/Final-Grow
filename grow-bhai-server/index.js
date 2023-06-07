@@ -10,6 +10,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+const fs = require('fs');
 //mongoDb
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.2pfkbmr.mongodb.net/?retryWrites=true&w=majority`;
@@ -30,11 +31,42 @@ async function run(){
         const orderCollection = client.db('growBangla').collection('Orders');
         
         //add product api
-        app.post('/addProduct', async(req, res)=>{
-          const addproduct = req.body;
-          const result = await productCollection.insertOne(addproduct);
-          res.send(result);
-        })
+        // Server-side code
+          app.post('/addProduct', async (req, res) => {
+            const addproduct = req.body;
+            
+            // Extract the Base64 image from the request body
+            const base64Image = addproduct.image;
+            
+            // Remove the Base64 image from the addproduct object
+            delete addproduct.image;
+            
+            // Convert the Base64 image to a Buffer
+            const imageBuffer = Buffer.from(base64Image, 'base64');
+            
+            // Generate a unique filename for the image
+            const filename = Date.now() + '.jpg'; // You can use a different file extension if needed
+            
+            // Specify the file path to save the image
+            const filePath = './uploads/' + filename;
+            
+            try {
+              // Write the image buffer to the file
+              fs.writeFileSync(filePath, imageBuffer);
+              
+              // Set the image filename in the addproduct object
+              addproduct.image = filename;
+              
+              // Insert the addproduct object into the database
+              const result = await productCollection.insertOne(addproduct);
+              
+              res.send(result);
+            } catch (error) {
+              console.error(error);
+              res.status(500).json({ error: 'An error occurred' });
+            }
+          });
+
 
         app.get('/addedproduct', async(req, res)=>{
           const query = {};
