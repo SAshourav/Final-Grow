@@ -52,6 +52,8 @@ const AddProduct = ({user}) => {
                 if(data.acknowledged){
                     alert("Order Added");
                     form.reset();
+                    setImage("");
+                    window.location.reload();
                 }
             })
             .catch(err => console.error(err))

@@ -39,7 +39,7 @@ function FishDetails({ allFishesCollection }) {
   };
 
   const addToCart = () =>{
-    if(cart){
+    if(cart.length !== 0){
       if(cart[0].farmer_id !== farmer_id){
         alert("Must be from the same Provider/ farmer");
       }else{
@@ -90,6 +90,7 @@ function FishDetails({ allFishesCollection }) {
                   console.log(user);
                   if(data.acknowledged){
                       alert("Added To cart");
+                      window.location.reload();
                   }
               })
               .catch(err => console.error(err))
