@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useUserAuth } from '../../../../Context/UserAuthContext';
 
-function MeatDetails({ allMeatCollection }) {
-  const { product_name, description, _id ,price,farmer_id ,image} = allMeatCollection;
+function FruitDetails({ allFruitsCollection }) {
+  const { product_name, description, _id ,price,farmer_id, image} = allFruitsCollection;
 
   const [quantity, setQuantity] = useState(1);
 
@@ -26,18 +26,19 @@ function MeatDetails({ allMeatCollection }) {
   const handleQuantityChange = (event) => {
     setQuantity(parseInt(event.target.value));
   };
-  const {user} = useUserAuth();
 
+  const {user} = useUserAuth();
   const [cart, setCart] = useState([]);
   
-    useEffect(() => {
-      fetch("http://localhost:5000/cart")
-        .then((res) => res.json())
-        .then((data) => setCart(data.filter((pd) => pd.account === user.email)));
-    }, []);
+  useEffect(() => {
+    fetch("http://localhost:5000/cart")
+      .then((res) => res.json())
+      .then((data) => setCart(data.filter((pd) => pd.account === user.email)));
+  }, []);
+  
 
   const addToCart = () =>{
-    if(cart){
+    if(cart.length !== 0){
       if(cart[0].farmer_id !== farmer_id){
         alert("Must be from the same Provider/ farmer");
       }else{
@@ -104,6 +105,7 @@ function MeatDetails({ allMeatCollection }) {
         <h2 className="card-title">{product_name}</h2>
         <div className="text-lg font-bold mb-2">Tk. {price}</div>
         <p>{description}</p>
+        <h2>Farmer: {farmer_id}</h2>
         <div className="rating">
           <input
             type="radio"
@@ -153,5 +155,4 @@ function MeatDetails({ allMeatCollection }) {
   );
 }
 
-export default MeatDetails;
-
+export default FruitDetails;

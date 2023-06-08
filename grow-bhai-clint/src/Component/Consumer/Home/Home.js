@@ -6,6 +6,7 @@ import Fish from '../Categories/Fish/Fish';
 import Meat from '../Categories/Meat/Meat';
 import Cart from '../Cart/Cart';
 import { useUserAuth } from '../../../Context/UserAuthContext';
+import Fruits from '../Categories/Fruits/Fruits';
 
 const Home = () => {
     const {user} = useUserAuth();
@@ -23,6 +24,9 @@ const Home = () => {
 
                     <h2  className='text-3xl mt-3 mb-3'>Meat</h2>
                     <Meat></Meat>
+
+                    <h2  className='text-3xl mt-3 mb-3'>Fruits</h2>
+                    <Fruits></Fruits>
                 </div>
 
                 <div>

@@ -2,9 +2,26 @@ import React, { useEffect, useState } from 'react'
 import { useUserAuth } from '../../../../Context/UserAuthContext';
 
 function VegetablesDetails({ allVegetablesCollection }) {
-  const { product_name, description, _id ,price,farmer_id} = allVegetablesCollection;
+  const { product_name, description, _id ,price,farmer_id, image} = allVegetablesCollection;
 
   const [quantity, setQuantity] = useState(1);
+
+  var filename = image;
+  const [imageUrl, setImageUrl] = useState('');
+
+  useEffect(() => {
+    // Fetch the data URL for the image
+    const url = `http://localhost:5000/image/${filename}`
+    console.log(url)
+    fetch(url)
+      .then(response => response.text())
+      .then(dataUrl => {
+        setImageUrl(dataUrl);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [filename]);
 
   const handleQuantityChange = (event) => {
     setQuantity(parseInt(event.target.value));
@@ -82,10 +99,7 @@ function VegetablesDetails({ allVegetablesCollection }) {
   return (
     <div className="bg-white card card-compact w-96 bg-base-100 shadow-xl mr-2">
       <figure>
-        <img
-          src="https://distan.sukabumikota.go.id/wp-content/uploads/2016/01/buah-tomat.jpg"
-          alt="Shoes"
-        />
+        <img src={imageUrl} alt={product_name} />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{product_name}</h2>

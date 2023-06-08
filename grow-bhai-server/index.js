@@ -7,6 +7,10 @@ const port = process.env.PORT || 5000;
 
 //middlewere 
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+
 app.use(cors());
 app.use(express.json());
 
@@ -42,7 +46,7 @@ async function run(){
             delete addproduct.image;
             
             // Convert the Base64 image to a Buffer
-            const imageBuffer = Buffer.from(base64Image, 'base64');
+            const imageBuffer = base64Image;
             
             // Generate a unique filename for the image
             const filename = Date.now() + '.jpg'; // You can use a different file extension if needed
@@ -74,6 +78,29 @@ async function run(){
           const products = await cursor.toArray();
           res.send(products);
         })
+
+        //get the image
+        app.use('/uploads', express.static('uploads'));
+
+        // Endpoint to retrieve and display the image
+        app.get('/image/:filename', (req, res) => {
+          const filename = req.params.filename;
+          const imagePath = `./uploads/${filename}`;
+
+          // Read the image file as a buffer
+          fs.readFile(imagePath, (err, data) => {
+            if (err) {
+              console.error(err);
+              res.status(500).json({ error: 'An error occurred' });
+            } else {
+              // Set the appropriate content type for the response
+              res.setHeader('Content-Type', 'image/jpg');
+
+              // Send the image buffer as the response
+              res.send(data);
+            }
+          });
+        });
 
         //farmer Account Open
 

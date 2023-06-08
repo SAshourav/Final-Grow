@@ -6,8 +6,8 @@ const AddProduct = ({user}) => {
         var reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
         reader.onload = () => {
-            console.log(reader.result);
             setImage(reader.result);
+            console.log(image);
         };
         reader.onerror = (error) => {
             console.log("Error: ", error)
@@ -61,7 +61,7 @@ const AddProduct = ({user}) => {
             <div className='mb-18 w-3/4 mx-auto '>
                 <form onSubmit={addProduct} className='flex'>
                     <div className='mb-10'>
-                        <img width={600} height={600} className='border-2 ' src={image} alt="Upload" />
+                        <img width={500} height={500} className='border-2 mr-5' src={image} alt="Upload" />
                         <input type="file" accept='image/*' onChange={converToBase64} className="mr- mt-2 file-input file-input-bordered file-input-accent file-input-sm " />
                     </div>
                     <div className='gap-4 grid grid-cols-3'>

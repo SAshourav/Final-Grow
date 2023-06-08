@@ -2,7 +2,24 @@ import React, { useEffect, useState } from 'react'
 import { useUserAuth } from '../../../../Context/UserAuthContext';
 
 function FishDetails({ allFishesCollection }) {
-  const { product_name, description, _id, price, farmer_id } = allFishesCollection;
+  const { product_name, description, _id, price, farmer_id,image } = allFishesCollection;
+
+  var filename = image;
+  const [imageUrl, setImageUrl] = useState('');
+
+  useEffect(() => {
+    // Fetch the data URL for the image
+    const url = `http://localhost:5000/image/${filename}`
+    console.log(url)
+    fetch(url)
+      .then(response => response.text())
+      .then(dataUrl => {
+        setImageUrl(dataUrl);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [filename]);
 
   const [quantity, setQuantity] = useState(1);
 
@@ -83,10 +100,7 @@ function FishDetails({ allFishesCollection }) {
   return (
     <div className="bg-white card card-compact w-96 bg-base-100 shadow-xl mr-2">
       <figure>
-        <img
-          src="https://distan.sukabumikota.go.id/wp-content/uploads/2016/01/buah-tomat.jpg"
-          alt="Shoes"
-        />
+        <img src={imageUrl} alt={product_name} />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{product_name}</h2>
