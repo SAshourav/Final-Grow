@@ -140,6 +140,25 @@ async function run(){
           res.send(result);
         })
 
+        //cart single element delete
+        app.delete('/cart/:account/:_id', async (req, res) => {
+          const { account, _id } = req.params;
+          
+          try {
+            const result = await cartCollection.deleteOne({ account, _id: new ObjectId(_id) });
+            
+            if (result.deletedCount === 1) {
+              res.send('Document deleted successfully.');
+            } else {
+              res.status(404).send('Document not found.');
+            }
+          } catch (error) {
+            console.error(error);
+            res.status(500).send('An error occurred while deleting the document.');
+          }
+        });
+        
+
         //orders
 
         app.post('/order', async(req, res)=>{
