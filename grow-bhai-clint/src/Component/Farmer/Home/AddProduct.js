@@ -53,7 +53,6 @@ const AddProduct = ({user}) => {
                     alert("Order Added");
                     form.reset();
                     setImage("");
-                    window.location.reload();
                 }
             })
             .catch(err => console.error(err))
@@ -63,7 +62,7 @@ const AddProduct = ({user}) => {
             <div className='mb-18 w-3/4 mx-auto '>
                 <form onSubmit={addProduct} className='flex'>
                     <div className='mb-10'>
-                        <img width={500} height={500} className='border-2 mr-5' src={image} alt="Upload" />
+                        <img width={500} height={500} className='border-2 border-black mr-5' src={image} alt="Upload" />
                         <input type="file" accept='image/*' onChange={converToBase64} className="mr- mt-2 file-input file-input-bordered file-input-accent file-input-sm " />
                     </div>
                     <div className='gap-4 grid grid-cols-3'>

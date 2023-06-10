@@ -15,10 +15,10 @@ function Vegetables() {
 
   return (
     <div>
-        <div className='pt-4 mb-10 grid grid-cols-2 grid-auto-rows-1/3'>
+        <div className='pt-4 mb-10 grid grid-cols-3 grid-auto-rows-1/3'>
           {limitedVegitable.map(pd => <VegetablesDetails key={pd._id} allVegetablesCollection={pd} />)}
         </div>
-        <Link className='border py-2 px-5 bg-green-500 rounded-lg hover:bg-slate-300' to='/vegitable'>See All</Link>
+        <Link className='border py-2 px-5 font-bold bg-green-300 rounded-lg hover:bg-slate-300' to='/vegitable'>See All</Link>
     </div>
     
   );

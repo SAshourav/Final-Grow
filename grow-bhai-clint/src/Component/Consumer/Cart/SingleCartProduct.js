@@ -17,7 +17,7 @@ const SingleCartProduct = ({pd}) => {
         <div className="flex items-center border-2 border-gray-200 p-2 rounded-lg">
             <div className="w-20 h-20">
                 <p>{name}</p>
-                <button onClick={singleCartDelete} className='border px-2 rounded-full hover:bg-red-500'>X</button>
+                <button onClick={singleCartDelete} className='btn btn-outline btn-primary'>X</button>
             </div>
             <div className="ml-3">
                 <p className="text-gray-500">Quantity: {quantity}</p>

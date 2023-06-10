@@ -26,7 +26,7 @@ const OrderSingle = ({ pd }) => {
     };
 
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card w-96 bg-base-100 shadow-xl border border-black">
             <div className="card-body">
                 <h2 className="card-title">Order Id: {_id}</h2>
                 <p>Total Amount: {amount}</p>

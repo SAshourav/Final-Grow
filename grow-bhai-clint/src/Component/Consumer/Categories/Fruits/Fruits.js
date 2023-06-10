@@ -21,7 +21,7 @@ function Fruits() {
                 limitedFruits.map(pd => <FruitDetails key={pd._id} allFruitsCollection={pd} />)
             }
         </div>
-        <Link className='mt-10 border py-2 px-5 bg-green-500 rounded-lg hover:bg-slate-300' to='/fish'>See All</Link>
+        <Link className='mt-10 border py-2 px-5 font-bold bg-green-300 rounded-lg hover:bg-slate-300' to='/fish'>See All</Link>
       </div>
         
     ) 

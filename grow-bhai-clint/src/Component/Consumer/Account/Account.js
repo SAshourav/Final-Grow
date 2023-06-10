@@ -15,13 +15,12 @@ const Account = () => {
     
 
     return (
-        <div className="bg-gray-100 pt-36 ">
+        <div className="bg-gray-100 pt-36">
             <h2 className='text-3xl'>Hey, {user.displayName} !!</h2>
             <div className="container mx-auto py-12">
                     <div className="bg-white shadow rounded-lg p-6">
                         <div className="flex items-center justify-between">
                             <h2 className="text-xl font-semibold">Account Details</h2>
-                            <button className="text-blue-500 hover:text-blue-700">Edit</button>
                         </div>
                         <div className="flex items-center mt-6">
                             <div className="relative w-20 h-20 overflow-hidden rounded-full">
@@ -36,7 +35,7 @@ const Account = () => {
                     </div>
             </div>
             <h1 className='font-mono font-bold text-3xl'>Order List</h1>
-            <div className='order-list grid grid-cols-4 gap-2 ml-10 mb-3'>
+            <div className='order-list grid grid-cols-4 gap-2 ml-48 mb-3'>
                 {
                     orders.map((pd) => (
                         <SingleOrders key={pd._id} pd={pd}></SingleOrders>

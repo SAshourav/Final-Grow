@@ -12,8 +12,8 @@ const Home = () => {
         <div>
             <Coursole></Coursole>
             <div className='home mb-5'>
-                <div className='products'>
-                    <h2 className='text-3xl mt-3 mb-3'>Vegetable</h2>
+                <div className='products ml-10'>
+                    <h2 className='font-popins text-3xl mt-3 mb-3'>Vegetable</h2>
                     <Vegetables/>
 
                     <h2  className='text-3xl mt-3 mb-3'>Fish</h2>

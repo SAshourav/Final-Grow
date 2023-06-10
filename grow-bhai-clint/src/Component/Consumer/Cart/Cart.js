@@ -8,10 +8,14 @@ const Cart = () => {
     const [cart, setCart] = useState([]);
     const [farmer_id, setFarmerId] = useState('');
 
-    useEffect(() => {
+    const fetchCart = () => {
         fetch("http://localhost:5000/cart")
             .then((res) => res.json())
             .then((data) => setCart(data.filter((pd) => pd.account === user.email)));
+    };
+    
+    useEffect(() => {
+        fetchCart();
     }, [user.email]);
 
     useEffect(() => {
@@ -20,6 +24,16 @@ const Cart = () => {
         }
     }, [cart]);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchCart();
+        }, 5000); // Adjust the polling interval as needed
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [user.email]);
+
     const getTotalPrice = () => {
         let totalPrice = 0;
         cart.forEach((item) => {
@@ -27,7 +41,6 @@ const Cart = () => {
         });
         return totalPrice;
     };
-
 
     return (
         <div className="cart mt-4 rounded-lg mr-2 p-4">
@@ -44,7 +57,7 @@ const Cart = () => {
                     <p className="text-xl mb-4 font-semibold">Total price: {getTotalPrice()}</p>
                     <Link
                         to={`/checkout?total=${getTotalPrice()}&farmer_id=${farmer_id}`}
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
+                        className="btn btn-primary"
                     >
                         Checkout
                     </Link>

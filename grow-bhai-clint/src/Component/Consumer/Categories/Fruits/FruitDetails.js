@@ -97,7 +97,7 @@ function FruitDetails({ allFruitsCollection }) {
   }
 
   return (
-    <div className="bg-white card card-compact w-96 bg-base-100 shadow-xl mr-2">
+    <div className="bg-white card card-compact w-96 bg-base-100 shadow-xl mr-2 mb-4">
       <figure>
         <img src={imageUrl} alt={product_name} />
       </figure>

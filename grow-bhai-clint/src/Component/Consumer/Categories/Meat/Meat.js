@@ -18,7 +18,7 @@ function Meat() {
               limitedMeat.map(pd=><MeatDetails key={pd._id} allMeatCollection={pd}/>)
           }
       </div>
-      <Link className='border py-2 px-5 bg-green-500 rounded-lg hover:bg-slate-300' to='/meat'>See All</Link>
+      <Link className='border py-2 px-5 font-bold bg-green-300 rounded-lg hover:bg-slate-300' to='/meat'>See All</Link>
     </div>
     
   )

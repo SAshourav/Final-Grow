@@ -220,6 +220,13 @@ async function run(){
           }
         });
 
+        // Farmer Side Delete Product 
+
+        app.delete('/deleteProduct/:_id', async (req, res) => {
+          const _id = req.params._id;
+          const result = await productCollection.deleteOne({ _id: new ObjectId(_id) });
+          res.send(result);
+        })
 
         
         

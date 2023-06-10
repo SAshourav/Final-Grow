@@ -97,8 +97,8 @@ function VegetablesDetails({ allVegetablesCollection }) {
   }
 
   return (
-    <div className="bg-white card card-compact w-96 bg-base-100 shadow-xl mr-2">
-      <figure>
+    <div className="bg-white card card-compact w-96 bg-base-100 shadow-xl mr-2 mb-4">
+      <figure >
         <img src={imageUrl} alt={product_name} />
       </figure>
       <div className="card-body">
