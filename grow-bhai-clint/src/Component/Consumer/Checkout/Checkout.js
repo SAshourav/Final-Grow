@@ -41,6 +41,8 @@ const Checkout = () => {
             quantity: product.quantity,
             price: product.price
         }));
+
+        const currentDate = new Date();
     
         const order = {
             name,
@@ -51,6 +53,7 @@ const Checkout = () => {
             amount,
             farmer_id,
             status,
+            date: currentDate,
             DetailedProduct: detailedProduct
         };
     
