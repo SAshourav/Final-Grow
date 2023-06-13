@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../../Context/UserAuthContext';
 
 const Login = () => {
@@ -7,6 +7,9 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const form = location.state?.form?.pathname || '/home'
 
     const { login, googleSignin } = useUserAuth();
 
@@ -28,7 +31,7 @@ const Login = () => {
             setError("");
             try {
                 await login(email, password);
-                navigate("/home");
+                navigate(form, {replace: true});
             } catch (err) {
                 setError(err.message);
                 console.log(error);

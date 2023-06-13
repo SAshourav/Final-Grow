@@ -15,7 +15,7 @@ const Account = () => {
     
 
     return (
-        <div className="bg-gray-100 pt-36">
+        <div className="bg-gray-100 pt-36 pb-10">
             <h2 className='text-3xl'>Hey, {user.displayName} !!</h2>
             <div className="container mx-auto py-12">
                     <div className="bg-white shadow rounded-lg p-6">
