@@ -29,29 +29,71 @@ function SearchDetails({ allSearchedCollection }) {
     setQuantity(parseInt(event.target.value));
   };
 
-  const addToCart = () =>{
-    let productToAdd = {
-      name: product_name,
-      product_id: _id,
-      account: user.email,
-      quantity: quantity,
-      price: parseFloat(price)
-    }
+  const [cart, setCart] = useState([]);
+  
+    useEffect(() => {
+      fetch("http://localhost:5000/cart")
+        .then((res) => res.json())
+        .then((data) => setCart(data.filter((pd) => pd.account === user.email)));
+    }, [user.email]);
 
-    fetch('http://localhost:5000/cart', {
-            method: 'POST',
-            headers: {
-                'content-type' : 'application/json'
-            },
-            body: JSON.stringify(productToAdd)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if(data.acknowledged){
-                    alert("Added To cart");
-                }
+  const addToCart = () =>{
+    if(cart.length !== 0){
+      if(cart[0].farmer_id !== farmer_id){
+        alert("Must be from the same Provider/ farmer");
+      }else{
+        let productToAdd = {
+          name: product_name,
+          product_id: _id,
+          account: user.email,
+          quantity: quantity,
+          price: parseFloat(price),
+          farmer_id 
+        }
+    
+        fetch('http://localhost:5000/cart', {
+                method: 'POST',
+                headers: {
+                    'content-type' : 'application/json'
+                },
+                body: JSON.stringify(productToAdd)
             })
-            .catch(err => console.error(err))
+                .then(res => res.json())
+                .then(data => {
+                    console.log(user);
+                    if(data.acknowledged){
+                        alert("Added To cart");
+                    }
+                })
+                .catch(err => console.error(err))
+      }
+    }else{
+      let productToAdd = {
+        name: product_name,
+        product_id: _id,
+        account: user.email,
+        quantity: quantity,
+        price: parseFloat(price),
+        farmer_id 
+      }
+  
+      fetch('http://localhost:5000/cart', {
+              method: 'POST',
+              headers: {
+                  'content-type' : 'application/json'
+              },
+              body: JSON.stringify(productToAdd)
+          })
+              .then(res => res.json())
+              .then(data => {
+                  console.log(user);
+                  if(data.acknowledged){
+                      alert("Added To cart");
+                  }
+              })
+              .catch(err => console.error(err))
+    }
+    
   }
 
   return (
@@ -67,34 +109,7 @@ function SearchDetails({ allSearchedCollection }) {
         <div className="text-lg font-bold mb-2">Tk. {price}</div>
         <div className="text-lg font-bold mb-2">Farmer id: {farmer_id}</div>
         <p>{description}</p>
-        <div className="rating">
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-            checked
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-        </div>
+
         <div className="form-control">
           <label className="label">
             Quantity:

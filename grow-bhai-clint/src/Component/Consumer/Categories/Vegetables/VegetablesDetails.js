@@ -106,34 +106,6 @@ function VegetablesDetails({ allVegetablesCollection }) {
         <div className="text-lg font-bold mb-2">Tk. {price}</div>
         <p>{description}</p>
         <h2>Farmer: {farmer_id}</h2>
-        <div className="rating">
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-            checked
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-        </div>
         <div className="form-control">
           <label className="label">
             Quantity:

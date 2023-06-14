@@ -37,7 +37,7 @@ function MeatDetails({ allMeatCollection }) {
     }, []);
 
   const addToCart = () =>{
-    if(cart){
+    if(cart.length !== 0){
       if(cart[0].farmer_id !== farmer_id){
         alert("Must be from the same Provider/ farmer");
       }else{
@@ -104,34 +104,6 @@ function MeatDetails({ allMeatCollection }) {
         <h2 className="card-title">{product_name}</h2>
         <div className="text-lg font-bold mb-2">Tk. {price}</div>
         <p>{description}</p>
-        <div className="rating">
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-            checked
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            className="mask mask-star-2 bg-green-500"
-          />
-        </div>
         <div className="form-control">
           <label className="label">
             Quantity:
