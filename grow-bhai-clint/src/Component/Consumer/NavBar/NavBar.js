@@ -25,7 +25,7 @@ const NavBar = () => {
         }
     }
     return (
-        <div className="navbar bg-green-200 sticky top-0 z-50">
+        <div className="navbar bg-green-300 sticky top-0 z-50">
             <div className="flex-1">
                 <Link to='/home' className="btn btn-ghost normal-case text-xl">Grow Bangla</Link>
             </div>
@@ -45,7 +45,7 @@ const NavBar = () => {
                 </div>
                 <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
+                    <div className="border border-black w-10 rounded-full">
                     {user && user.photoURL && <img src={user.photoURL} alt="" />}
                     </div>
                 </label>

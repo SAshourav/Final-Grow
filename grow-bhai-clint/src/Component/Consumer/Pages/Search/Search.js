@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import SearchDetails from './SearchDetails';
 
 const Search = () => {
@@ -18,7 +18,7 @@ const Search = () => {
 
     return (
         <div>
-        <h2 className='text-3xl'>Khoj - The Search</h2>
+        <h2 className='text-3xl pt-5'>Khoj - The Search</h2>
         {searchedProduct.length === 0 ? (
             <div className='border border-black font-mono text-5xl m-10 p-5'>
                 <h3>No Product Found</h3>

@@ -38,8 +38,8 @@ const OrderSingle = ({ pd }) => {
                         <p>No detailed product available.</p>
                     )}
                 </div>
-                <p>Payment Method : {paymentMethod}</p>
-                <p>Order Status: {status}</p>
+                <p>Payment Method : <span className='text-red-700'>{paymentMethod}</span></p>
+                <p>Order Status: <span className='text-green-700'>{status}</span></p>
                 {status !== 'received' ? (
                 <div className="card-actions justify-end">
                     <select

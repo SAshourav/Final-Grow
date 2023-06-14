@@ -13,7 +13,7 @@ function Meat() {
     const limitedMeat = allMeats.slice(0, 6);
   return (
     <div>
-        <div className='mb-10 grid grid-cols-2 grid-auto-rows-1/3'>
+        <div className='t-4 mb-10 grid grid-cols-3 grid-auto-rows-1/3'>
           {
               limitedMeat.map(pd=><MeatDetails key={pd._id} allMeatCollection={pd}/>)
           }

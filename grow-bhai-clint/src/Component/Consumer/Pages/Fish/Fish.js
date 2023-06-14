@@ -11,7 +11,7 @@ function Fish() {
     }, []);
 
     return (
-        <div className='pt-4 mb-10 grid grid-cols-3 grid-auto-rows-1/3'>
+        <div className='pl-5 pt-4 mb-10 grid grid-cols-4 grid-auto-rows-1/3'>
             {
                 allFishes.map(pd => <FishDetails key={pd._id} allFishesCollection={pd} />)
             }

@@ -11,7 +11,7 @@ function Meat() {
     },[]);
   return (
     <div>
-        <div className='pt-4 mb-10 grid grid-cols-3 grid-auto-rows-1/3'>
+        <div className='pl-5 mt-10 mb-10 grid grid-cols-4 grid-auto-rows-1/3'>
           {
               allMeats.map(pd=><MeatDetails key={pd._id} allMeatCollection={pd}/>)
           }

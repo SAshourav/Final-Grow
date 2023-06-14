@@ -19,14 +19,11 @@ const NavBar = () => {
                 <Link to='/farmer'><img className='w-52' src={logo} alt="" /></Link>
             </div>
             <div className="flex-none gap-2">
-                <div className='mr-5'>
+                <div className='mr-10'>
                     <Link className='btn btn-ghost text-lg' to='/farmer/order'>Order</Link>
                 </div>
-                <div className='mr-5'>
+                <div className='mr-10'>
                     <Link className='btn btn-ghost text-lg' to='/home'>Consumer</Link>
-                </div>
-                <div className="form-control">
-                <input type="text" placeholder="Search" className="input input-bordered" />
                 </div>
                 <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

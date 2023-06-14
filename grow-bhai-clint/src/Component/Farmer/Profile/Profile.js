@@ -2,14 +2,7 @@ import React from 'react';
 import { useUserAuth } from '../../../Context/UserAuthContext';
 
 const Profile = () => {
-    const user1 = {
-        name: "James Bond",
-        member: "2-july-2022",
-        income: 200000,
-        Order: 10,
-        Farms: ["Cow", "Rice", "Fish", "Poultry"]
-    }
-    const { logOut, user } = useUserAuth();
+    const { user } = useUserAuth();
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">

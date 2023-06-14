@@ -12,7 +12,7 @@ function Vegetables() {
 
 
   return (
-        <div className='mt-10 mb-10 grid grid-cols-4 grid-auto-rows-1/3'>
+        <div className='pl-5 mt-10 mb-10 grid grid-cols-4 grid-auto-rows-1/3'>
           {allVegetables.map(pd => <VegetablesDetails key={pd._id} allVegetablesCollection={pd} />)}
         </div>
   );
