@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../../Context/UserAuthContext';
+import logo from '../../Images/logo.png';
 
 const NavBar = () => {
     const [search, setSearch] = useState('');
@@ -25,9 +26,9 @@ const NavBar = () => {
         }
     }
     return (
-        <div className="navbar bg-green-300 sticky top-0 z-50">
+        <div className="navbar top-0 z-50">
             <div className="flex-1">
-                <Link to='/home' className="btn btn-ghost normal-case text-xl">Grow Bangla</Link>
+                <Link to='/home' className=""><img className='w-52' src={logo} alt="" /></Link>
             </div>
             <div className="flex-1">
                 <Link to='/farmer' className="btn btn-ghost normal-case text-xl">Farmer</Link>
