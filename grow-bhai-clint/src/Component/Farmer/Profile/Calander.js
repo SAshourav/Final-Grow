@@ -12,6 +12,7 @@ const Calander = () => {
 
     const [allOrders , setAllOrders] = useState([]);
     const [orders, setOrders] = useState([]);
+
     const { user } = useUserAuth();
     useEffect(() => {
         fetch("http://localhost:5000/order")
@@ -23,7 +24,6 @@ const Calander = () => {
         let filtered = allOrders.filter((pd) => {
           let productDate = new Date(pd.date); 
           if(productDate >= date.selection.startDate && productDate <= date.selection.endDate){
-            console.log("Found the order")
             return true
           }else{
             return false
@@ -32,7 +32,6 @@ const Calander = () => {
         setStartDate(date.selection.startDate);
         setEndDate(date.selection.endDate);
         setOrders(filtered);
-        console.log(orders);
       };
       
 
@@ -42,7 +41,7 @@ const Calander = () => {
         key: 'selection',
       }
     return (
-        <div>
+        <div className='mb-20'>
             <DateRangePicker
                 ranges={[selectionRange]}
                 onChange={handleSelect}
