@@ -11,7 +11,7 @@ const Calander = () => {
     const [endDate, setEndDate] = useState(new Date());
 
     const [allOrders , setAllOrders] = useState([]);
-    const [order, setOrders] = useState([]);
+    const [orders, setOrders] = useState([]);
     const { user } = useUserAuth();
     useEffect(() => {
         fetch("http://localhost:5000/order")
@@ -19,18 +19,20 @@ const Calander = () => {
           .then((data) => setAllOrders(data.filter((pd) => pd.farmer_id === user.email)));
       }, []);
 
-
       const handleSelect = (date) => {
         let filtered = allOrders.filter((pd) => {
           let productDate = new Date(pd.date); 
-          console.log(productDate);
-          return (
-            productDate >= date.selection.startDate && productDate <= date.selection.endDate
-          );
+          if(productDate >= date.selection.startDate && productDate <= date.selection.endDate){
+            console.log("Found the order")
+            return true
+          }else{
+            return false
+          }
         });
         setStartDate(date.selection.startDate);
         setEndDate(date.selection.endDate);
         setOrders(filtered);
+        console.log(orders);
       };
       
 
@@ -45,7 +47,7 @@ const Calander = () => {
                 ranges={[selectionRange]}
                 onChange={handleSelect}
             />
-            <Stats order={order}></Stats>
+            <Stats orders={orders}></Stats>
         </div>
     );
 };
