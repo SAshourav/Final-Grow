@@ -1,6 +1,8 @@
 import React from 'react';
 import { useUserAuth } from '../../../Context/UserAuthContext';
 import Profiles from '../../../Profiles';
+import Calander from './Calander';
+
 
 const Profile = () => {
     const { user } = useUserAuth();
@@ -15,7 +17,8 @@ const Profile = () => {
                     </div>
                 </div>
                 <div>
-                    <h2 className='text-xl'>Previous Months Income</h2>
+                    <h2 className='text-xl mb-10 font-bold'>Income Details</h2>
+                    <Calander></Calander>
                 </div>
             </div>
         </div>
