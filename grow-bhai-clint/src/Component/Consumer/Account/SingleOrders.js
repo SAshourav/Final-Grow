@@ -31,7 +31,7 @@ const SingleOrders = ({ pd }) => {
     // Iterate over the DetailedProduct array
     DetailedProduct.forEach((product, index) => {
       const { name, quantity, price } = product;
-      const yPos = 160 + index * 20;
+      const yPos = 160 + index * 30;
 
       // Add product details to the PDF document
       doc.setFont('courier', 'normal');
@@ -40,8 +40,8 @@ const SingleOrders = ({ pd }) => {
       doc.text(250, yPos, price.toString());
     });
 
-    doc.text(20, 200, `Payment Method: ${paymentMethod}`);
-    doc.text(20, 220, `Total Amount: ${amount}`);
+    doc.text(20, 480, `Payment Method: ${paymentMethod}`);
+    doc.text(20, 500, `Total Amount: ${amount}`);
 
     // Save the PDF
     doc.save('invoice.pdf');
